@@ -1,5 +1,5 @@
 # AudioMonitorService
-This is a simple service that monitors when the selected audio device changes and then sets a volume previously defined for this device.
+This is a simple windows service that monitors when the selected audio device changes and then sets a volume previously defined for this device.
 
 # Why?
 I was tired of turning down the volume of my earpods each time that I connected because they always started at 80% volume, and if I forgot and played any sound, they left me deaf for some minutes.
