@@ -1,6 +1,7 @@
 ﻿
 using NAudio.CoreAudioApi;
 using NAudio.CoreAudioApi.Interfaces;
+using System.Data;
 
 namespace AudioMonitorService
 {
@@ -16,11 +17,17 @@ namespace AudioMonitorService
             enumerator.RegisterEndpointNotificationCallback(this);
         }
 
-        public void OnDeviceStateChanged(string deviceId, DeviceState newState)
-        {
+        public void OnDeviceStateChanged(string defaultDeviceId, DeviceState newState)
+        {           
+            if (newState == DeviceState.Active) 
+            {
+                MMDevice device = enumerator.GetDevice(defaultDeviceId);
+                DefaultDeviceChanged?.Invoke(device);
+                Console.WriteLine(newState.ToString() + "    " + device.FriendlyName);
+            }
         }
 
-        public void OnDeviceAdded(string pwstrDeviceId)
+        public void OnDeviceAdded(string defaultDeviceId)
         {
         }
 
